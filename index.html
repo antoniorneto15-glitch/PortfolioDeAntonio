@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio - Antonio Rodrigues</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.cdnfonts.com/css/texturina" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/expletus-sans-2" rel="stylesheet">
+</head>
+
+<body>
+
+    <script>
+        if (sessionStorage.getItem("logado") !== "true") {
+            window.location.href = "login.html";
+        }
+    </script>
+
+    <header>
+        <div class="logo">Antonio Rodrigues</div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="atividades.html">Atividades</a></li>
+                <li><a href="#ppe">PPE</a></li>
+                <li><a href="#curriculo">Currículo</a></li>
+                <li><a href="#contatos">Contatos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <section id="inicio">
+        <h2 class="section-title">Sobre Mim</h2>
+        <div class="photos-container">
+            <div class="image-box photo-box">
+                <img src="./img/Antonio.png">
+            </div>
+            <div class="guide-wrapper">
+                <div class="guide-avatar">
+                    <img src="./img/Antonio_IA.png">
+                </div>
+                <div class="speech-bubble">
+                    <p>Olá! Me chamou Antonio e guiarei vocês pelo meu portfólio!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="ppe" style="background-color: #fff;">
+        <h2 class="section-title">Plano Pessoal de Estudos (PPE)</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Turno</th>
+                        <th>Segunda</th>
+                        <th>Terça</th>
+                        <th>Quarta</th>
+                        <th>Quinta</th>
+                        <th>Sexta</th>
+                        <th>Sábado</th>
+                        <th>Domingo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Manhã</strong></td>
+                        <td>09:00 - 11:00<br><strong>Humanas</strong></td>
+                        <td>09:00 - 11:00<br><strong>Linguagens</strong></td>
+                        <td>09:00 - 11:00<br><strong>Matemática</strong></td>
+                        <td>09:00 - 11:00<br><strong>Natureza</strong></td>
+                        <td>09:00 - 11:00<br><strong>Resumo</strong></td>
+                        <td> - </td>
+                        <td> - </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tarde</strong></td>
+                        <td>13:00 - 18:20<br><strong>Aula SESI/SENAI</strong></td>
+                        <td>13:00 - 21:35<br><strong>Aula SESI/SENAI</strong></td>
+                        <td>13:00 - 21:35<br><strong>Aula SESI/SENAI</strong></td>
+                        <td>13:00 - 21:35<br><strong>Aula SESI/SENAI</strong></td>
+                        <td>13:00 - 18:20<br><strong>Aula SENAI</strong></td>
+                        <td> - </td>
+                        <td> - </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Noite</strong></td>
+                        <td>19:00 - 23:00<br><strong>Descanso</strong></td>
+                        <td>21:50 - 23:00<br><strong>Descanso</strong></td>
+                        <td>21:50 - 23:00<br><strong>Descanso</strong></td>
+                        <td>21:50 - 23:00<br><strong>Descanso</strong></td>
+                        <td>19:00 - 23:00<br><strong>Descanso</strong></td>
+                        <td> - </td>
+                        <td> - </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+
+    <section id="curriculo">
+        <h2 class="section-title">Currículo</h2>
+        <div class="flex-container">
+            <div class="image-box" style="border-color: var(--red);">
+                <p>CURRICULO AQUI</p>
+            </div>
+            <div class="text-box">
+                <h3>O que é um Currículo?</h3>
+                <br>
+                <p>O currículo (ou Curriculum Vitae) é um documento que reúne a trajetória educacional e profissional de
+                    uma pessoa. Ele funciona como um "cartão de visitas" para o mercado de trabalho, detalhando
+                    habilidades, competências, experiências passadas e formação acadêmica.</p>
+                <br>
+                <p>O objetivo principal de um currículo é demonstrar para avaliadores e recrutadores que o candidato
+                    possui o perfil ideal e o conhecimento necessário para preencher uma vaga ou oportunidade
+                    específica.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contatos" style="background-color: var(--light);">
+        <h2 class="section-title">Contatos</h2>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <h3>Email</h3>
+                <p>antneto2019@gmail.com</p>
+            </div>
+            <div class="contact-card">
+                <h3>Telefone</h3>
+                <p>(89) 9985-1008</p>
+            </div>
+            <div class="contact-card">
+                <h3>Instagram</h3>
+                <p>@tony.srzn</p>
+            </div>
+        </div>
+    </section>
+
+
+    <footer>
+        <p>Tunico &copy; 2026</p>
+    </footer>
+
+</body>
+
+</html>
