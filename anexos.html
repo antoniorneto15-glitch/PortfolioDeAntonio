@@ -116,6 +116,34 @@
             background-color: var(--orange);
             transform: scale(1.2);
         }
+
+        @media (max-width: 768px) {
+            .carousel {
+                gap: 8px;
+                padding: 20px 15px;
+            }
+
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+            .carousel-content {
+                width: calc(100vw - 160px);
+                max-width: 100%;
+            }
+
+            .carousel-content h3 {
+                font-size: 15px;
+                min-height: 50px;
+            }
+
+            .carousel-content img {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
     </style>
 
     <script>

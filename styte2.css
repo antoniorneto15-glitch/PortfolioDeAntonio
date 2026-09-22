@@ -104,6 +104,8 @@ nav a:hover {
 
 .atividades img{
     width: 400px;
+    max-width: 100%;
+    height: auto;
 }
 
 .centre{
@@ -113,5 +115,53 @@ nav a:hover {
 
 .centre img{
     padding: 10px;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 1rem 3%;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+        padding: 4px 8px;
+    }
+
+    .cards-container {
+        margin-top: 50px;
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .card {
+        width: 45%;
+        padding: 30px 15px;
+    }
+
+    .card h3 {
+        font-size: 18px;
+    }
+
+    .atividades img {
+        width: 100%;
+    }
+
+    .centre {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 420px) {
+    .card {
+        width: 100%;
+    }
 }
 

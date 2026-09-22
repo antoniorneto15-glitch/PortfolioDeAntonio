@@ -244,3 +244,103 @@ footer {
     font-family: 'Oswald', sans-serif;
     border-top: 3px solid var(--red);
 }
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 1rem 3%;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+        padding: 4px 8px;
+    }
+
+    section {
+        padding: 40px 4%;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+    }
+
+    .photos-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .photo-box {
+        width: min(280px, 70vw);
+        height: min(280px, 70vw);
+    }
+
+    .guide-wrapper {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .guide-avatar {
+        width: 180px;
+        height: 300px;
+    }
+
+    .speech-bubble {
+        max-width: 90%;
+        margin: 0 auto;
+        padding: 20px;
+        font-size: 1rem;
+    }
+
+    .speech-bubble::before {
+        left: 50%;
+        top: -25px;
+        transform: translateX(-50%);
+        border: 14px solid transparent;
+        border-bottom-color: var(--blue);
+        border-right-color: transparent;
+    }
+
+    .flex-container {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .text-box {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .image-box {
+        width: 100%;
+        height: 300px;
+    }
+
+    .contact-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .contact-card {
+        width: 100%;
+        max-width: 320px;
+    }
+}
+
+@media (max-width: 600px) {
+    .table-container {
+        margin: 0 -4%;
+    }
+
+    th, td {
+        padding: 8px;
+        font-size: 0.8rem;
+    }
+}

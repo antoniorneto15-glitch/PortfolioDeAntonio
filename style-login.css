@@ -138,3 +138,13 @@ h1, h2, h3, .login-logo, label, .btn-login {
     border-bottom-color: var(--dark);
     transform: translateY(-2px);
 }
+
+@media (max-width: 420px) {
+    .login-card {
+        padding: 25px 18px;
+    }
+
+    .login-logo {
+        font-size: 1.3rem;
+    }
+}
