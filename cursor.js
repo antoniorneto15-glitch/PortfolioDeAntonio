@@ -1,9 +1,11 @@
 /* ============================================================
    Portfólio — Antonio Rodrigues
    Cursor Zangetsu — a espada do protagonista de Bleach
-   Lâmina em SVG estilo mangá + brilho de reiatsu + corte no clique.
-   Progressive enhancement: se o JS não rodar, o cursor nativo
-   permanece (a classe que esconde o cursor só é adicionada aqui).
+   Sprite: img/mouse.png (espada diagonal, ponta no canto
+   superior esquerdo). O hotspot do clique é a própria ponta,
+   localizada escaneando o canal alfa da imagem.
+   Progressive enhancement: sem JS ou sem a imagem, o cursor
+   nativo do navegador permanece.
    ============================================================ */
 
 (function () {
@@ -14,22 +16,8 @@
         return;
     }
 
-    /* Ponta da lâmina no SVG — o hotspot do cursor fica exatamente aí */
-    const TIP_X = 64;
-    const TIP_Y = 6;
-
-    const SVG = `
-<svg viewBox="0 0 120 128" width="120" height="128" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-    <path d="M55 110 C 48 114, 45 121, 50 127 C 53 122, 58 117, 61 111 Z" fill="#F4F2ED" stroke="#0C0C0F" stroke-width="2" stroke-linejoin="round"/>
-    <rect x="53" y="69" width="14" height="39" rx="4.5" fill="#F4F2ED" stroke="#0C0C0F" stroke-width="2.5"/>
-    <path d="M52.5 78 L 67.5 74 M52.5 87 L 67.5 83 M52.5 96 L 67.5 92 M52.5 105 L 67.5 101" stroke="#0C0C0F" stroke-width="1.6" opacity="0.7"/>
-    <circle cx="60" cy="113" r="2.6" fill="#F4F2ED" stroke="#0C0C0F" stroke-width="1.5"/>
-    <circle cx="60" cy="118.4" r="2.2" fill="#F4F2ED" stroke="#0C0C0F" stroke-width="1.4"/>
-    <circle cx="60" cy="123.2" r="1.8" fill="#F4F2ED" stroke="#0C0C0F" stroke-width="1.3"/>
-    <path d="M64 6 C 76 12, 79 20, 79 30 L 79 62 Q 79 70, 71 70 L 49 70 C 44 62, 41 52, 44 38 C 47 24, 55 11, 64 6 Z" fill="#F4F2ED" stroke="#0C0C0F" stroke-width="3" stroke-linejoin="round"/>
-    <path d="M47 24 C 43.8 40, 44 58, 49 69" stroke="#FFFFFF" stroke-width="1.6" fill="none" opacity="0.55"/>
-    <path d="M71.5 20 C 73 34, 73 52, 71.5 64" stroke="#0C0C0F" stroke-width="2" fill="none" opacity="0.18"/>
-</svg>`;
+    const IMG_SRC = "img/mouse.png";
+    const DISPLAY_SIZE = 128;
 
     const CSS = `
 html.zc-on,
@@ -45,11 +33,10 @@ html.zc-on select { cursor: text !important; }
     top: 0;
     left: 0;
     z-index: 2147483646;
-    width: 120px;
+    width: 128px;
     height: 128px;
     pointer-events: none;
-    transform: translate3d(-240px, -240px, 0) rotate(45deg);
-    transform-origin: 64px 6px;
+    transform: translate3d(-240px, -240px, 0);
     will-change: transform;
     opacity: 0;
 }
@@ -57,21 +44,23 @@ html.zc-on select { cursor: text !important; }
 .zangetsu-cursor.is-visible { opacity: 1; }
 .zangetsu-cursor.is-text { opacity: 0; }
 
-.zangetsu-cursor svg {
+.zangetsu-cursor img {
     display: block;
+    width: 128px;
+    height: 128px;
     filter: drop-shadow(0 0 5px rgba(246, 137, 30, 0.45)) drop-shadow(0 0 16px rgba(200, 16, 46, 0.22));
     transition: filter 0.16s ease;
 }
 
 /* brilho de reiatsu mais forte sobre o que é clicável (não é movimento) */
-.zangetsu-cursor.is-hot svg {
+.zangetsu-cursor.is-hot img {
     filter: drop-shadow(0 0 8px rgba(246, 137, 30, 0.75)) drop-shadow(0 0 24px rgba(200, 16, 46, 0.40));
 }
 
 .zangetsu-swing {
     width: 100%;
     height: 100%;
-    transform-origin: 64px 6px;
+    transform-origin: 4px 4px; /* substituído pela ponta real via JS */
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -103,74 +92,127 @@ html.zc-on select { cursor: text !important; }
     style.textContent = CSS;
     document.head.appendChild(style);
 
-    const cursor = document.createElement("div");
-    cursor.className = "zangetsu-cursor";
-    cursor.setAttribute("aria-hidden", "true");
-    cursor.innerHTML = '<div class="zangetsu-swing">' + SVG + "</div>";
-    document.body.appendChild(cursor);
-
-    const swing = cursor.querySelector(".zangetsu-swing");
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    let cursor = null;
+    let swing = null;
+    let tipX = 0;
+    let tipY = 0;
 
     let shown = false;
     let hot = false;
     let textMode = false;
 
     const setShown = (value) => {
-        if (shown === value) return;
+        if (!cursor || shown === value) return;
         shown = value;
         cursor.classList.toggle("is-visible", value);
     };
 
     const setHot = (value) => {
-        if (hot === value) return;
+        if (!cursor || hot === value) return;
         hot = value;
         cursor.classList.toggle("is-hot", value);
     };
 
     const setTextMode = (value) => {
-        if (textMode === value) return;
+        if (!cursor || textMode === value) return;
         textMode = value;
         cursor.classList.toggle("is-text", value);
     };
 
-    window.addEventListener("pointermove", (e) => {
-        if (e.pointerType === "touch") {
-            setShown(false);
-            return;
+    const img = new Image();
+    img.alt = "";
+    img.draggable = false;
+    img.setAttribute("aria-hidden", "true");
+
+    img.addEventListener("error", () => {
+        /* sem imagem não há espada: limpa o CSS extra e mantém o cursor nativo */
+        style.remove();
+    });
+
+    img.addEventListener("load", () => {
+        /* localiza a ponta real da espada: pixel visível mais à esquerda
+           da primeira linha opaca da imagem (a ponta fica no canto) */
+        try {
+            const c = document.createElement("canvas");
+            c.width = img.naturalWidth || DISPLAY_SIZE;
+            c.height = img.naturalHeight || DISPLAY_SIZE;
+            const ctx = c.getContext("2d", { willReadFrequently: true });
+            ctx.drawImage(img, 0, 0);
+            const d = ctx.getImageData(0, 0, c.width, c.height).data;
+
+            /* escala caso a imagem não seja 128px nativos */
+            const sx = DISPLAY_SIZE / c.width;
+            const sy = DISPLAY_SIZE / c.height;
+
+            busca:
+            for (let y = 0; y < c.height; y++) {
+                for (let x = 0; x < c.width; x++) {
+                    if (d[(y * c.width + x) * 4 + 3] > 16) {
+                        tipX = Math.round(x * sx);
+                        tipY = Math.round(y * sy);
+                        break busca;
+                    }
+                }
+            }
+        } catch (err) {
+            /* leitura bloqueada (ex.: abertura via file://): a ponta é o canto */
+            tipX = 0;
+            tipY = 0;
         }
 
-        /* a ponta da lâmina fica exatamente sob o ponteiro */
-        cursor.style.transform =
-            "translate3d(" + (e.clientX - TIP_X) + "px, " + (e.clientY - TIP_Y) + "px, 0) rotate(45deg)";
+        cursor = document.createElement("div");
+        cursor.className = "zangetsu-cursor";
+        cursor.setAttribute("aria-hidden", "true");
 
-        const el = e.target instanceof Element ? e.target : null;
-        const isText = !!(el && el.closest("input, textarea, select"));
-        const isHot = !isText && !!(el && el.closest("a, button, label, summary, [role='button']"));
+        swing = document.createElement("div");
+        swing.className = "zangetsu-swing";
+        swing.style.transformOrigin = tipX + "px " + tipY + "px";
+        swing.appendChild(img);
+        cursor.appendChild(swing);
+        document.body.appendChild(cursor);
 
-        setTextMode(isText);
-        setHot(isHot);
-        setShown(!isText);
-    }, { passive: true });
+        swing.addEventListener("animationend", () => {
+            swing.classList.remove("zc-slash");
+        });
 
-    window.addEventListener("pointerdown", (e) => {
-        if (e.button !== 0 || e.pointerType === "touch" || textMode || reduceMotion) return;
-        swing.classList.remove("zc-slash");
-        void swing.offsetWidth; /* reinicia a animação em cliques rápidos */
-        swing.classList.add("zc-slash");
+        window.addEventListener("pointermove", (e) => {
+            if (e.pointerType === "touch") {
+                setShown(false);
+                return;
+            }
+
+            /* a ponta da lâmina fica exatamente sob o ponteiro */
+            cursor.style.transform =
+                "translate3d(" + (e.clientX - tipX) + "px, " + (e.clientY - tipY) + "px, 0)";
+
+            const el = e.target instanceof Element ? e.target : null;
+            const isText = !!(el && el.closest("input, textarea, select"));
+            const isHot = !isText && !!(el && el.closest("a, button, label, summary, [role='button']"));
+
+            setTextMode(isText);
+            setHot(isHot);
+            setShown(!isText);
+        }, { passive: true });
+
+        window.addEventListener("pointerdown", (e) => {
+            if (e.button !== 0 || e.pointerType === "touch" || textMode || reduceMotion) return;
+            swing.classList.remove("zc-slash");
+            void swing.offsetWidth; /* reinicia a animação em cliques rápidos */
+            swing.classList.add("zc-slash");
+        });
+
+        /* some quando o mouse deixa a janela */
+        document.addEventListener("pointerout", (e) => {
+            if (!e.relatedTarget) setShown(false);
+        });
+        document.documentElement.addEventListener("mouseleave", () => setShown(false));
+        window.addEventListener("blur", () => setShown(false));
+
+        /* o cursor nativo só desaparece quando o Zangetsu está pronto */
+        document.documentElement.classList.add("zc-on");
     });
 
-    swing.addEventListener("animationend", () => {
-        swing.classList.remove("zc-slash");
-    });
-
-    /* some quando o mouse deixa a janela */
-    document.addEventListener("pointerout", (e) => {
-        if (!e.relatedTarget) setShown(false);
-    });
-    document.documentElement.addEventListener("mouseleave", () => setShown(false));
-    window.addEventListener("blur", () => setShown(false));
-
-    /* o cursor nativo só desaparece quando o Zangetsu está ativo */
-    document.documentElement.classList.add("zc-on");
+    img.src = IMG_SRC;
 })();
