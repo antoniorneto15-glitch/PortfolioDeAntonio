@@ -1,0 +1,6 @@
+[      91ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ http://localhost:8139/login.html:1
+[   28772ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ http://localhost:8139/login.html:1
+[   28787ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8139/img/mouse.png:1
+[   41140ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ http://localhost:8139/login.html:1
+[   41174ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8139/img/mouse.png:1
+[   62342ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ http://localhost:8139/login.html:1

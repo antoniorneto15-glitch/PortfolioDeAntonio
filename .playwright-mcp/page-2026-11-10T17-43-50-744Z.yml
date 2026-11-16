@@ -1,0 +1,14 @@
+- generic [ref=f4e3]:
+  - generic [ref=f4e4]: Antonio Rodrigues
+  - paragraph [ref=f4e5]: Logue para acessar o Portfólio
+  - generic [ref=f4e6]:
+    - generic [ref=f4e7]:
+      - generic [ref=f4e8]: Usuário
+      - textbox "Usuário" [ref=f4e9]:
+        - /placeholder: Seu usuário
+    - generic [ref=f4e10]:
+      - generic [ref=f4e11]: Senha
+      - textbox "Senha" [ref=f4e12]:
+        - /placeholder: Sua senha
+      - button "Mostrar" [ref=f4e13] [cursor=pointer]
+    - button "Entrar" [ref=f4e14] [cursor=pointer]

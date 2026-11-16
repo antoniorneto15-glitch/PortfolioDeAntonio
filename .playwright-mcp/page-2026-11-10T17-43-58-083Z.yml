@@ -1,0 +1,36 @@
+- generic [active] [ref=f6e1]:
+  - banner [ref=f6e2]:
+    - generic [ref=f6e3]: Atividades Por Eixo
+    - navigation [ref=f6e4]:
+      - list [ref=f6e5]:
+        - listitem [ref=f6e6]:
+          - link "Início" [ref=f6e7] [cursor=pointer]:
+            - /url: index.html#inicio
+        - listitem [ref=f6e8]:
+          - link "Atividades" [ref=f6e9] [cursor=pointer]:
+            - /url: atividades.html
+        - listitem [ref=f6e10]:
+          - link "PPE" [ref=f6e11] [cursor=pointer]:
+            - /url: index.html#ppe
+        - listitem [ref=f6e12]:
+          - link "Contatos" [ref=f6e13] [cursor=pointer]:
+            - /url: index.html#contatos
+  - generic [ref=f6e14]:
+    - link [ref=f6e15] [cursor=pointer]:
+      - /url: linguagens.html
+      - heading "Linguagens" [level=3] [ref=f6e16]
+    - link [ref=f6e17] [cursor=pointer]:
+      - /url: matematica.html
+      - heading "Matemática" [level=3] [ref=f6e18]
+    - link [ref=f6e19] [cursor=pointer]:
+      - /url: humanas.html
+      - heading "Humanas" [level=3] [ref=f6e20]
+    - link [ref=f6e21] [cursor=pointer]:
+      - /url: natureza.html
+      - heading "Natureza" [level=3] [ref=f6e22]
+    - link [ref=f6e23] [cursor=pointer]:
+      - /url: senai.html
+      - heading "Senai" [level=3] [ref=f6e24]
+    - link [ref=f6e25] [cursor=pointer]:
+      - /url: anexos.html
+      - heading "Anexos" [level=3] [ref=f6e26]

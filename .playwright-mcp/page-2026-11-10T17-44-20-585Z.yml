@@ -1,0 +1,108 @@
+- generic [active] [ref=f7e1]:
+  - banner [ref=f7e2]:
+    - generic [ref=f7e3]: Antonio Rodrigues
+    - navigation [ref=f7e4]:
+      - list [ref=f7e5]:
+        - listitem [ref=f7e6]:
+          - link "Início" [ref=f7e7] [cursor=pointer]:
+            - /url: "#inicio"
+        - listitem [ref=f7e8]:
+          - link "Atividades" [ref=f7e9] [cursor=pointer]:
+            - /url: atividades.html
+        - listitem [ref=f7e10]:
+          - link "PPE" [ref=f7e11] [cursor=pointer]:
+            - /url: "#ppe"
+        - listitem [ref=f7e12]:
+          - link "Contatos" [ref=f7e13] [cursor=pointer]:
+            - /url: "#contatos"
+  - generic [ref=f7e14]:
+    - heading "Sobre Mim" [level=2] [ref=f7e15]
+    - paragraph [ref=f7e23]: Olá! Eu me chamou Antonio!Seja bem-vindo ao meu portfólio!
+  - generic [ref=f7e24]:
+    - heading "Plano Pessoal de Estudos (PPE)" [level=2] [ref=f7e25]
+    - table [ref=f7e27]:
+      - rowgroup [ref=f7e28]:
+        - row [ref=f7e29]:
+          - columnheader "Turno" [ref=f7e30]
+          - columnheader "Segunda" [ref=f7e31]
+          - columnheader "Terça" [ref=f7e32]
+          - columnheader "Quarta" [ref=f7e33]
+          - columnheader "Quinta" [ref=f7e34]
+          - columnheader "Sexta" [ref=f7e35]
+          - columnheader "Sábado" [ref=f7e36]
+          - columnheader "Domingo" [ref=f7e37]
+      - rowgroup [ref=f7e38]:
+        - row [ref=f7e39]:
+          - cell [ref=f7e40]:
+            - strong [ref=f7e41]: Manhã
+          - cell [ref=f7e42]:
+            - text: 09:00 - 11:00
+            - strong [ref=f7e43]: Humanas
+          - cell [ref=f7e44]:
+            - text: 09:00 - 11:00
+            - strong [ref=f7e45]: Linguagens
+          - cell [ref=f7e46]:
+            - text: 09:00 - 11:00
+            - strong [ref=f7e47]: Matemática
+          - cell [ref=f7e48]:
+            - text: 09:00 - 11:00
+            - strong [ref=f7e49]: Natureza
+          - cell [ref=f7e50]:
+            - text: 09:00 - 11:00
+            - strong [ref=f7e51]: Resumo
+          - cell "-" [ref=f7e52]
+          - cell "-" [ref=f7e53]
+        - row [ref=f7e54]:
+          - cell [ref=f7e55]:
+            - strong [ref=f7e56]: Tarde
+          - cell [ref=f7e57]:
+            - text: 13:00 - 18:20
+            - strong [ref=f7e58]: Aula SESI/SENAI
+          - cell [ref=f7e59]:
+            - text: 13:00 - 21:35
+            - strong [ref=f7e60]: Aula SESI/SENAI
+          - cell [ref=f7e61]:
+            - text: 13:00 - 21:35
+            - strong [ref=f7e62]: Aula SESI/SENAI
+          - cell [ref=f7e63]:
+            - text: 13:00 - 21:35
+            - strong [ref=f7e64]: Aula SESI/SENAI
+          - cell [ref=f7e65]:
+            - text: 13:00 - 18:20
+            - strong [ref=f7e66]: Aula SENAI
+          - cell "-" [ref=f7e67]
+          - cell "-" [ref=f7e68]
+        - row [ref=f7e69]:
+          - cell [ref=f7e70]:
+            - strong [ref=f7e71]: Noite
+          - cell [ref=f7e72]:
+            - text: 19:00 - 23:00
+            - strong [ref=f7e73]: Descanso
+          - cell [ref=f7e74]:
+            - text: 21:50 - 23:00
+            - strong [ref=f7e75]: Descanso
+          - cell [ref=f7e76]:
+            - text: 21:50 - 23:00
+            - strong [ref=f7e77]: Descanso
+          - cell [ref=f7e78]:
+            - text: 21:50 - 23:00
+            - strong [ref=f7e79]: Descanso
+          - cell [ref=f7e80]:
+            - text: 19:00 - 23:00
+            - strong [ref=f7e81]: Descanso
+          - cell "-" [ref=f7e82]
+          - cell "-" [ref=f7e83]
+  - generic [ref=f7e84]:
+    - heading "Contatos" [level=2] [ref=f7e85]
+    - generic [ref=f7e86]:
+      - generic [ref=f7e87]:
+        - heading "Email" [level=3] [ref=f7e88]
+        - paragraph [ref=f7e89]: antneto2019@gmail.com
+      - generic [ref=f7e90]:
+        - heading "Telefone" [level=3] [ref=f7e91]
+        - paragraph [ref=f7e92]: (89) 99985-1008
+      - generic [ref=f7e93]:
+        - heading "Instagram" [level=3] [ref=f7e94]
+        - paragraph [ref=f7e95]: "@tony.srzn"
+  - contentinfo [ref=f7e96]:
+    - paragraph [ref=f7e97]: Tunico © 2026
